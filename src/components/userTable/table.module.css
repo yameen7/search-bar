@@ -1,0 +1,18 @@
+/* UserTable.module.css */
+.userTable {
+    width: 100%;
+    /* padding: 5px; */
+    border-collapse: collapse;
+    /* margin: 15px; */
+  }
+  
+  .userTable th, .userTable td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .userTable th {
+    background-color: #f2f2f2;
+  }
+  

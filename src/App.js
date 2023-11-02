@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import UserTable from './components/userTable/userTable';
+import { useLazyQuery } from '@apollo/client';
+import { GET_USERS } from './users.gql';
+import SearchBar from './components/searchfield/searchBar';
+import { useEffect, useState } from 'react';
 
 function App() {
+
+  
+  const [execute, { data }] = useLazyQuery(GET_USERS);
+  const [users, setUsers] = useState();
+
+  const initialData = ()=>{
+      execute();
+      setUsers(data?.users)
+  }
+
+  useEffect(() => {
+    initialData();
+  }, [data]);
+
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='searchContainer'>
+        <SearchBar setuser={setUsers} inital={initialData} user={users} />
+      </div>
+      <UserTable users={users} />
     </div>
   );
 }
