@@ -27,6 +27,7 @@ function App() {
       <div className='searchContainer'>
         <SearchBar setuser={setUsers} inital={initialData} user={users} />
       </div>
+      {users&&<p>Users: {users.length}</p>}
       <UserTable users={users} />
     </div>
   );
